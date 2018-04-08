@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class nose {
 
-    public static String calcular (String ip, String masc){char dot ='.';
+    public static String calcular (String ip, String masc){
+        char dot ='.';
         int cont=3;
 
 
