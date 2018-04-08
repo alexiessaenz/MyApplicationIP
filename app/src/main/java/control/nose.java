@@ -18,7 +18,7 @@ public class nose {
     //ArrayList<Integer> host = new ArrayList<Integer>();
 
 
-    public static String obtenerDireccionRed(String ip, String masc) {
+    public static String obtenerDireccionRed(String ip, String masc) {  // metodo que nos permite obtener la direccion de red
         //-----------------------------
         char dot = '.';
         int cont = 3;
@@ -87,7 +87,7 @@ public class nose {
     }
 
 
-    public static String obtenerBroadcast (String ip, String masc){
+    public static String obtenerBroadcast (String ip, String masc){ //metodos que nos permite obtener la direccion de broad cast
         //-----------------------------
         char dot = '.';
         int cont = 3;
@@ -138,7 +138,7 @@ public class nose {
 
     }
 
-    public static String cortarRed (){
+    public static String cortarRed (){ // metodo que nos permite obtener la parte de red de una ip
         String partRed = "";
 
         int as;
@@ -151,11 +151,11 @@ public class nose {
             System.out.println("igualllllll: "+ (as==ass));
 
             if (Red.get(i).equals(ipe.get(i))) {
-                partRed += Integer.toString(Red.get(i));
+                partRed += Integer.toString(ipe.get(i));
                 if (i < 3) partRed += ".";
                 ///
             }else{
-                partHost += Integer.toString(Red.get(i));
+                partHost += Integer.toString(ipe.get(i));
                 if (i < 3) partHost += ".";
             }
 
@@ -163,8 +163,13 @@ public class nose {
         return partRed;
     }
 
-    public static String cortarHost (){
+    public static String cortarHost (){// funcion que nos permite obtner la parte de host de una ip
         return partHost;
+    }
+
+    public static String numerosHost (String masc){
+        return  Integer.toString((int) Math.pow(2, 32-(Integer.valueOf(masc)))-2);
+
     }
 
 

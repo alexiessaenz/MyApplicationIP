@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
-                android:textSize="14sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,7 +91,8 @@
                 android:ems="10"
 
                 android:inputType="date"
-                android:textAllCaps="true"/>
+                android:textAllCaps="true"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -123,7 +124,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -154,7 +156,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -208,7 +211,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -221,7 +225,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -260,7 +265,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -275,7 +281,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Button" />
+                android:backgroundTint="#311B92"
+                android:text="CALCULAR"
+                android:textColor="?attr/colorButtonNormal" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
