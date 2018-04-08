@@ -14,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText etMask;
     private EditText etBroadcast;
     private EditText etnetId;
+    private EditText etred;
+    private EditText ethost;
+    private EditText etnHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         etMask = (EditText) findViewById(R.id.et_mask);
         etBroadcast = (EditText) findViewById(R.id.et_broad);
         etnetId = (EditText) findViewById(R.id.et_netId);
+        etred = (EditText) findViewById(R.id.et_red);
+        ethost = (EditText) findViewById(R.id.et_host);
+        etnHost = (EditText) findViewById(R.id.et_nHost);
 
 
 
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 //etIp.setText("gh");
                 etBroadcast.setText(String.valueOf(nose.obtenerBroadcast(String.valueOf(etIp.getText()) , String.valueOf(etMask.getText()))));
                 etnetId.setText(String.valueOf(nose.obtenerDireccionRed(String.valueOf(etIp.getText()) , String.valueOf(etMask.getText()))));
+                etred.setText(String.valueOf(nose.cortarRed()));
+                ethost.setText(String.valueOf(nose.cortarHost()));
+                etnHost.setText(String.valueOf(nose.cortarHost()));
                 //etBroadcast.setText("dffdfddf");
 
 

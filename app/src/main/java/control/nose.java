@@ -12,7 +12,7 @@ import static java.lang.Integer.parseInt;
 
 public class nose {
      static  ArrayList<Integer> Red = new ArrayList<Integer>();
-     static ArrayList<Integer> host = new ArrayList<Integer>();
+     static String partHost = "";
      static ArrayList<Integer> ipe = new ArrayList<Integer>();
 
     //ArrayList<Integer> host = new ArrayList<Integer>();
@@ -138,17 +138,34 @@ public class nose {
 
     }
 
-    public static String cortar (String ip, String masc){
+    public static String cortarRed (){
         String partRed = "";
+
+        int as;
+        int ass;
         for (int i = 0; i < 4; i++) {
+            as=Red.get(i);
+            ass=ipe.get(i);
+            System.out.println("reddddddddd: "+ Red);
+            System.out.println("ipppppppppp: "+ ipe);
+            System.out.println("igualllllll: "+ (as==ass));
 
-
-            if (Red.get(i)==ipe.get(i)) partRed += Integer.toString(Red.get(i));
+            if (Red.get(i).equals(ipe.get(i))) {
+                partRed += Integer.toString(Red.get(i));
+                if (i < 3) partRed += ".";
+                ///
+            }else{
+                partHost += Integer.toString(Red.get(i));
+                if (i < 3) partHost += ".";
+            }
 
         }
         return partRed;
     }
 
+    public static String cortarHost (){
+        return partHost;
+    }
 
 
 
