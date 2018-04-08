@@ -2,105 +2,154 @@ package control;
 import com.example.hdrdr.myapplicationip.MainActivity;
 
 import java.util.ArrayList;
+import java.util.ArrayList;
+import java.lang.Integer.*;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by HDRDR on 4/7/2018.
  */
 
 public class nose {
+     static  ArrayList<Integer> Red = new ArrayList<Integer>();
+     static ArrayList<Integer> host = new ArrayList<Integer>();
+     static ArrayList<Integer> ipe = new ArrayList<Integer>();
 
-    public static String calcular (String ip, String masc){
-        char dot ='.';
-        int cont=3;
+    //ArrayList<Integer> host = new ArrayList<Integer>();
 
 
-        String octeDec="";
+    public static String obtenerDireccionRed(String ip, String masc) {
+        //-----------------------------
+        char dot = '.';
+        int cont = 3;
+        int masca = parseInt(masc);
+
+        String octeDec = "";
         ArrayList<Integer> ipDecimal = new ArrayList<Integer>();
-        ArrayList<Integer> dirRed = new ArrayList<Integer>();
 
 
-
-
-        for(int n = 0 ; n<=ip.length()-1 ; n++) {                                   //
+        for (int n = 0; n <= ip.length() - 1; n++) {                                   //
             if (ip.charAt(n) != dot) {
-                octeDec+=Character.toString(ip.charAt(n));
+                octeDec += Character.toString(ip.charAt(n));
             }
             if (ip.charAt(n) == dot) {
                 ipDecimal.add(Integer.valueOf(octeDec));
 
-                octeDec="";
+                octeDec = "";
             }
         }                                                                           //
         ipDecimal.add(Integer.valueOf(octeDec));
+        ipe=ipDecimal;
+        //--------------------------------------------
+        //int masca = parseInt(masc);
+        int suma = 0;
+        ArrayList<Integer> mascara = new ArrayList<Integer>();
+        for (int i = 0; i < 4; i++) {
+            //System.out.println("masca "+ masca);
+            if (masca > 8) {
+                masca -= 8;
+                mascara.add(255);
+            }
+        }
+        for (int j = 7; j > 7 - masca; j--) {
+            System.out.println("masca " + masca);
+            System.out.println("j = " + j);
+
+            suma += (int) Math.pow(2, j);
+            System.out.println("potencia " + suma);
+        }
+
+        mascara.add(suma);
+        mascara.add(0);
+        System.out.println("mascara : " + mascara);
+
+        ArrayList<Integer> dirRed = new ArrayList<Integer>();
+
+
+        for (int i = 0; i < 4; i++) {
+            dirRed.add(ipDecimal.get(i)& mascara.get(i));
+            System.out.println("broadcast: "+dirRed);
+        }
+
+        Red = dirRed; //clonar arreglo para posterior uso
 
 
 
-
-        ArrayList<Integer> ipBinaria = new ArrayList<Integer>();
+        //----------------------- conversion String
 
         String octa="";
-        int num = 0;
-
-        for (int f = 0; f < ipDecimal.size(); f++) {
-            octa=(Integer.toString(ipDecimal.get(f))); //error
-
-            int z = Integer.valueOf(octa);
-            octa=Integer.toString(z, 2);
-
-            String octaInv="";
-            for (int j=octa.length()-1 ; j>=0 ; j--) octaInv = octaInv + octa.charAt(j); //invertir la cadena con el octeto en binario
-
-
-            for (int i = (8-octaInv.length()); i > 0; i--) octaInv+="0";    //agregar ceros al octeto
-
-
-            octa="";
-            for (int j=octaInv.length()-1 ; j>=0 ; j--) octa = octa + octaInv.charAt(j); //revertir la cadena contenido el octeto con ceros a la izquierda en binario
-
-            for (int i = 0; i < 8; i++) {
-                ipBinaria.add(Integer.parseInt(String.valueOf(octa.charAt(i))));
-            }
-
-            octa="";
-        }
-
-        for (int i = 0; i < Integer.parseInt(masc); i++) {
-            dirRed.add(ipBinaria.get(i));
-
-        }
-
-
-
-        for (int i = Integer.parseInt(masc); i < 32-1 ; i++) {
-            dirRed.add(1);
-
-        }
-        dirRed.add(0);
-
-
-        String UltimoHost = "";
-        octa="";
-        cont = 0;
-        num = 0;
-        for (int i = 0; i < 32; i++) {
-            cont++;
+        for (int i = 0; i < 4; i++) {
             octa += Integer.toString(dirRed.get(i));
+            if (i < 3) octa += ".";
+        }
+        System.out.println("direccion de direccion de red: "+octa );
+        return octa;
+    }
 
-            if (cont == 8) {
-                num++;
 
-                int z = 0;
-                z = Integer.parseInt(octa, 2);
+    public static String obtenerBroadcast (String ip, String masc){
+        //-----------------------------
+        char dot = '.';
+        int cont = 3;
+        int masca = parseInt(masc);
 
-                UltimoHost += z;
-                if (num<4) UltimoHost += ".";
+        String octeDec = "";
+        ArrayList<Integer> ipDecimal = new ArrayList<Integer>();
 
-                cont = 0;
-                octa = "";
+
+        for (int n = 0; n <= ip.length() - 1; n++) {                                   //
+            if (ip.charAt(n) != dot) {
+                octeDec += Character.toString(ip.charAt(n));
+            }
+            if (ip.charAt(n) == dot) {
+                ipDecimal.add(Integer.valueOf(octeDec));
+
+                octeDec = "";
+            }
+        }                                                                           //
+        ipDecimal.add(Integer.valueOf(octeDec));
+        //--------------------------------------------
+        int suma = 0;
+        //int masca = parseInt(masc);
+
+        ArrayList<Integer> mascarainv = new ArrayList<Integer>();
+        for (int i = 0; i < 4; i++) {
+            if (masca > 8) {
+                masca -= 8;
+                mascarainv.add(0);
             }
         }
-        System.out.println("direccion de ultimo host: "+UltimoHost );
 
-        return UltimoHost;
+        int mascainv = 8-masca;
+        for (int j = 0; j <  mascainv; j++) suma += (int) Math.pow(2, j); //obteniendo octeto limite
+        mascarainv.add(suma);
+        mascarainv.add(255);
+        ArrayList<Integer> broadcast = new ArrayList<Integer>();
+        for (int i = 0; i < 4; i++) broadcast.add(ipDecimal.get(i) | mascarainv.get(i)); // operacion binaria or
+
+        //----------------------- conversion String
+            String octa = "";
+            for (int i = 0; i < 4; i++) {
+                octa += Integer.toString(broadcast.get(i));
+                if (i < 3) octa += ".";
+            }
+            System.out.println("direccion de broadcast: " + octa);
+            return octa;
+
     }
+
+    public static String cortar (String ip, String masc){
+        String partRed = "";
+        for (int i = 0; i < 4; i++) {
+
+
+            if (Red.get(i)==ipe.get(i)) partRed += Integer.toString(Red.get(i));
+
+        }
+        return partRed;
+    }
+
+
+
+
 }

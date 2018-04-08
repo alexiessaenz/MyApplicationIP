@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etIp;
     private EditText etMask;
     private EditText etBroadcast;
+    private EditText etnetId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         etIp = (EditText) findViewById(R.id.et_ip);
         etMask = (EditText) findViewById(R.id.et_mask);
         etBroadcast = (EditText) findViewById(R.id.et_broad);
+        etnetId = (EditText) findViewById(R.id.et_netId);
 
 
 
@@ -34,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 //tv1.setText(Integer.toString(counterA));
                 //nose.calcular(String.valueOf(etIp.getText()) , String.valueOf(etMask.getText()));
                 //etIp.setText("gh");
-                etBroadcast.setText(String.valueOf(nose.calcular(String.valueOf(etIp.getText()) , String.valueOf(etMask.getText()))));
+                etBroadcast.setText(String.valueOf(nose.obtenerBroadcast(String.valueOf(etIp.getText()) , String.valueOf(etMask.getText()))));
+                etnetId.setText(String.valueOf(nose.obtenerDireccionRed(String.valueOf(etIp.getText()) , String.valueOf(etMask.getText()))));
                 //etBroadcast.setText("dffdfddf");
 
 
