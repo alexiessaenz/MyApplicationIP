@@ -168,6 +168,7 @@ public class nose {
     }
 
     public static String numerosHost (String masc){
+        if (Integer.valueOf(masc)==32) return  Integer.toString((int) Math.pow(2, 32-(Integer.valueOf(masc))));
         return  Integer.toString((int) Math.pow(2, 32-(Integer.valueOf(masc)))-2);
 
     }
